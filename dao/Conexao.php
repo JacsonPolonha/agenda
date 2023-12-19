@@ -10,7 +10,7 @@ class Conexao {
 
     static function getConnection(){
         if(!isset(self::$conexao)){
-            self::$conexao = new PDO('mysql:host=localhost', 'root', '');
+            self::$conexao = new PDO('mysql:host=localhost;dbname=Agenda', 'root', '');
         }
         return self::$conexao;
     }
