@@ -1,3 +1,4 @@
 # agenda
 
-8 - 1:24:19
+8 - concluido
+encontro extra 00:27:59

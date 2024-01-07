@@ -14,13 +14,35 @@ require_once "loader.php";
 
 echo "<h1>Testes!</h1>";
 
+// try {
+//     $dao = new UsuarioDao;
+//     $listaUsuario = $dao->listarTodos();
+//     foreach($listaUsuario as $usuario){
+//         echo $usuario->getNome();
+//     }
+
+// } catch (\Throwable $e) {
+//     echo "Erro ao carregar a lista de usuario: " . $e->getMessage();
+// }
+
 try {
     $dao = new UsuarioDao;
+
+    $usuario = new Usuario;
+    $usuario->setNome("Jacson Polonha");
+    $usuario->setEmail("jacsonpolonha@email.com");
+    $usuario->setLogin("polonha");
+    $usuario->setSenha("1234");
+
+    //$dao->inserir($usuario);
+    echo "Usuário cadastrado com sucesso!!!";
+
+
+    echo "<h2>Usuários</h2>";
     $listaUsuario = $dao->listarTodos();
     foreach($listaUsuario as $usuario){
-        echo $usuario->getNome();
+        echo $usuario->getNome(). "<br>";
     }
-
 } catch (\Throwable $e) {
-    echo "Erro ao carregar a lista de usuario: " . $e->getMessage();
+    echo "Erro ao cadastrar usuário: ". $e->getMessage();
 }
