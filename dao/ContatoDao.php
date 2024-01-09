@@ -4,7 +4,7 @@ class ContatoDao extends AbstractDao {
 
     public function inserir($obj){
         $sql = "INSERT INTO Contato (ContatoNome, UserID) VALUES (?,?)";
-        $st = $this->conexao->preprare($sql);
+        $st = $this->conexao->prepare($sql);
         $st->bindValue(1, $obj->getNome(), PDO::PARAM_STR);
         $st->bindValue(2, $obj->getUsuario()->getID(), PDO::PARAM_INT);
         $st->execute();
@@ -126,15 +126,33 @@ class ContatoDao extends AbstractDao {
     }
 
     public function excluirEmail($id){
-
+        $sql = "DELETE FROM Email WHERE EmailID = ?";
+        $st = $this->conexao->prepare($sql);
+        $st->bindValue(1, $id, PDO::PARAM_INT);
+        $st->execute();
     }
 
     public function excluirTelefone($id){
-
+        $sql = "DELETE FROM Telefone WHERE TellID = ?";
+        $st = $this->conexao->prepare($sql);
+        $st->bindValue(1, $id, PDO::PARAM_INT);
+        $st->execute();
     }
 
     public function atualizarTelefone($obj){
-        
+        $sql = "UPDATE Telefone SET TelNumero = ? WHERE TelID = ?";
+        $st = $this->conexao->prepare($sql);
+        $st->bindValue(1, $obj->getNumero(), PDO::PARAM_STR);
+        $st->bindValue(2, $obj->getId(), PDO::PARAM_INT);
+        $st->execute(); 
+    }
+
+    public function atualizarEmail($obj){
+        $sql = "UPDATE Email SET EmailEnd = ? WHERE EmailID = ?";
+        $st = $this->conexao->prepare($sql);
+        $st->bindValue(1, $obj->getEndereco(), PDO::PARAM_STR);
+        $st->bindValue(2, $obj->getId(), PDO::PARAM_INT);
+        $st->execute(); 
     }
 
 }
